@@ -6,3 +6,4 @@ ruby '2.2.3'
 # gem "rails"
 gem 'sinatra'
 gem 'rspec'
+gem 'rest-client'
