@@ -4,15 +4,16 @@
     <meta charset="utf-8">
     <title>Secret Santa</title>
     <link href='https://fonts.googleapis.com/css?family=Cabin:400,600' rel='stylesheet' type='text/css'>
+    <link href='public/normalize.css' rel='stylesheet' type='text/css'>
+    <link href='public/skeleton.css' rel='stylesheet' type='text/css'>
     <link href='public/style.css' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <div class="header">
-      <img src="public/img/makers-logo.png">
-      <h1>Secret Santa October 2015</h1>
-    </div>
-    <div class="main">
-        <%= yield %>
+    <div class="container">
+      <div class="row header">
+        <h1>Secret Santa October 2015</h1>
+      </div>
+      <%= yield %>
     </div>
   </body>
 </html>

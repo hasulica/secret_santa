@@ -1,29 +1,42 @@
-<div class="welcome">
+<div class="row">
   <h2>Well, well, well,
-    <%= user.name %>!</h2>
+    <%= user.name %>!
+  </h2>
+</div>
+
+<div class="row">
   <p>
     It looks like your public email address is
     <%= user.email %>.
   </p>
 </div>
-<div class="pair">
-  <p>
-    Pairs haven't been announced yet!
-  </p>
+
+<div class="row">
+
+  <div class="pair six columns">
+    <p>
+      Pairs haven't been announced yet!
+    </p>
+  </div>
+
+  <div class="budget six columns">
+    <p>
+      Just to let you know, you budget is £10.
+    </p>
+  </div>
+
 </div>
-<div class="budget">
-  <p>
-    Just to let you know, you budget is £10.
-  </p>
-</div>
-<div class="wishlist">
-  <p>
-    Put up a wishlist if you want.
-  </p>
-  <form>
-    <input type="text">
-    <input type="submit" value="add">
-  </form>
-  <ul class="items">
-  </ul>
+
+<div class="row">
+
+  <div class="wishlist">
+    <p>Put up a wishlist if you want.</p>
+    <form>
+      <input type="text">
+      <input type="submit" value="add">
+    </form>
+    <ul class="items">
+    </ul>
+  </div>
+  
 </div>
