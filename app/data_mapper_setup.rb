@@ -5,3 +5,4 @@ require_relative 'model/user'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/secret_santa_#{ENV['RACK_ENV']}")
 DataMapper.finalize
+DataMapper.auto_migrate!

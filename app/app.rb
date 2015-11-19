@@ -1,4 +1,4 @@
-ENV["RACK_ENV"] ||= "development"
+ENV['RACK_ENV'] ||= 'development'
 
 require 'sinatra/base'
 require 'rest_client'
@@ -43,12 +43,9 @@ class SecretSanta < Sinatra::Base
       auth_result = JSON.parse(auth_result)
 
       if OCTOBER_COHORT.include? auth_result['login']
-        # Check if the user is in the database already
-        # If so, just go to dashbaord as normal
-        # If not, create and save a User to the Database with the user email being the GH email that was found
-        erb :home, locals: auth_result
+        erb :home, locals: { user: current_user(auth_result) }
       else
-        body "Sorry, you're not in our cohort!"
+        body "Sorry, you're not in our cohort. Kthxbye!"
       end
     end
   end
@@ -66,4 +63,19 @@ class SecretSanta < Sinatra::Base
 
     redirect '/'
   end
+
+  helpers do
+    def current_user(auth_result)
+      @users = User.all
+      if @users.any? { |user| user.login == auth_result['login'] }
+        @user = @users.first(auth_result['login'])
+      else
+        @user = User.create(login: auth_result['login'],
+                            name: auth_result['name'],
+                            email: auth_result['email'])
+      end
+      return @user
+    end
+  end
+
 end
