@@ -2,12 +2,12 @@
 
 ENV['RACK_ENV'] = 'test'
 
-require File.join(File.dirname(__FILE__), '..', 'app.rb')
+require File.join(File.dirname(__FILE__), '..', 'app/app.rb')
 
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
-require './model/user'
+require './app/model/user'
 require 'database_cleaner'
 
 Capybara.app = SecretSanta
