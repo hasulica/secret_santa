@@ -1,7 +1,10 @@
-require 'sinatra'
+ENV["RACK_ENV"] ||= "development"
+
+require 'sinatra/base'
 require 'rest_client'
 require 'json'
 require_relative 'october_cohort'
+require_relative 'data_mapper_setup'
 
 CLIENT_ID = ENV['GH_BASIC_CLIENT_ID']
 CLIENT_SECRET = ENV['GH_BASIC_SECRET_ID']
@@ -36,12 +39,16 @@ class SecretSanta < Sinatra::Base
       if auth_result.headers.include? :x_oauth_scopes
         scopes = auth_result.headers[:x_oauth_scopes].split(', ')
       end
+
       auth_result = JSON.parse(auth_result)
 
       if OCTOBER_COHORT.include? auth_result['login']
-        erb :advanced, locals: auth_result
+        # Check if the user is in the database already
+        # If so, just go to dashbaord as normal
+        # If not, create and save a User to the Database with the user email being the GH email that was found
+        erb :home, locals: auth_result
       else
-        body "Sorry, you're not in our cohort"
+        body "Sorry, you're not in our cohort!"
       end
     end
   end

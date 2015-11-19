@@ -1,0 +1,7 @@
+user
+-----
+login | name | email | wishlist_link
+
+
+pairing
+user | secret_santa
